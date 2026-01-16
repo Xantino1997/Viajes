@@ -13,11 +13,9 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "..", "public")));
 app.use(cors());
 
-// Conectar a MongoDB
+// Conectar a MongoDB  "mongodb+srv://Gali:GaliDev@clustertienda.u3umz.mongodb.net/?retryWrites=true&w=majority&appName=ClusterTienda";
 const mongoURI =
-  process.env.MONGO_URI ||
-  "mongodb+srv://Gali:GaliDev@clustertienda.u3umz.mongodb.net/?retryWrites=true&w=majority&appName=ClusterTienda";
-
+  process.env.MONGO_URI || "mongodb+srv://ala282016viajes:ala282016viajes@cluster0.94owmnc.mongodb.net/?appName=Cluster0";
 mongoose
   .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Conectado a la base de datos MongoDB"))
@@ -156,3 +154,4 @@ app.delete("/viajes/:id", async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor en ejecución en http://localhost:${port}`);
 });
+
