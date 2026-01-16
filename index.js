@@ -148,10 +148,29 @@ app.delete("/viajes/:id", async (req, res) => {
 });
 
 
+app.get("/health", (req, res) => {
+  const mongoState = mongoose.connection.readyState;
+
+  const mongoStatus = {
+    0: "Desconectado",
+    1: "Conectado",
+    2: "Conectando",
+    3: "Desconectando",
+  };
+
+  res.json({
+    status: "OK",
+    message: "Todo en orden ✅",
+    server: "Express funcionando",
+    database: mongoStatus[mongoState] || "Estado desconocido",
+    timestamp: new Date(),
+  });
+});
 
 
 // Iniciar el servidor
 app.listen(port, () => {
   console.log(`Servidor en ejecución en http://localhost:${port}`);
 });
+
 
